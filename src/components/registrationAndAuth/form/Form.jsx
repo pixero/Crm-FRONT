@@ -1,12 +1,11 @@
 import React from "react";
-import FormStyle from './FormStyle.module.css';
+import FormStyle from './FormStyle.module.sass';
 export default class Form extends React.Component {
 
     render() {
         return (
-            <div className={}>
-
-                <form>
+            <div className={FormStyle.form}>
+                <form className={FormStyle.mainForm}>
                     <div className="form-group">
                         <label htmlFor="exampleInputEmail1">Email address</label>
                         <input type="email" className="form-control" id="exampleInputEmail1"
@@ -24,7 +23,6 @@ export default class Form extends React.Component {
                     </div>
                     <button type="submit" className="btn btn-primary">Submit</button>
                 </form>
-
             </div>
         )
     }
