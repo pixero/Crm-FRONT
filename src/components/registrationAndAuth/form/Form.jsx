@@ -1,10 +1,10 @@
 import React from "react";
-
+import FormStyle from './FormStyle.module.css';
 export default class Form extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className={}>
 
                 <form>
                     <div className="form-group">

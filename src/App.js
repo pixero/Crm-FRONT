@@ -1,7 +1,7 @@
 import React from 'react';
-import './App.css';
 import {Route ,Switch} from "react-router-dom";
 import BasePage from "./layouts/BasePage";
+import './App.sass';
 
 function App() {
     return (
