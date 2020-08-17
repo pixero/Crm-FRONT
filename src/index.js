@@ -5,7 +5,9 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter} from "react-router-dom";
+import Axios from "axios";
 
+Axios.defaults.baseURL = "http://localhost:8080"
 ReactDOM.render(
     <React.StrictMode>
         <BrowserRouter>
