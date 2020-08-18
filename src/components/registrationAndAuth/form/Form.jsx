@@ -2,6 +2,7 @@ import React from "react";
 import FormStyle from './FormStyle.module.sass';
 import {NavLink, Redirect} from "react-router-dom";
 import Axios from "axios";
+import Alert from "react-bootstrap/Alert";
 
 export default class Form extends React.Component {
 
@@ -40,6 +41,7 @@ export default class Form extends React.Component {
                         localStorage.setItem('token',response.data.token)
                         window.location.reload()
                     }else{
+                        console.log(response.data.token)
                         // add message in form
                     }
                 })
@@ -88,13 +90,21 @@ export default class Form extends React.Component {
     }
 
     render() {
+        let ifAuth = localStorage.getItem('isAuth')
         if(this.state.response){
             return (
                 <Redirect to='/authenticate'/>
             )
-        }else if(!this.state.response){
-            // add message in form
+        }else if(this.state.response===false){
+         
         }
+
+        if(ifAuth ){
+            return(
+            <Redirect to="/" />
+            )
+        }
+
         return (
             <div className={FormStyle.form}>
                 <div className={FormStyle.mainForm}>

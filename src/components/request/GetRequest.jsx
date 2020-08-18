@@ -6,7 +6,7 @@ export default class GetRequest extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            check: ''
+            check: localStorage.getItem('isAuth')
         }
     }
 
@@ -15,12 +15,12 @@ export default class GetRequest extends React.Component {
         Axios.get('/', {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorize': 'Bearer ' + token
+                    'Authorization': 'Bearer ' + token
                 }
             }
         )
             .then(response => {
-                this.setState({check: response.data.check})
+                localStorage.setItem( 'isAuth',response.data.check)
             })
             .catch(error => {
                 console.error(error)
@@ -28,11 +28,7 @@ export default class GetRequest extends React.Component {
     }
 
     render() {
-        if (this.state.check) {
-            return (
-                <Redirect to="/"/>
-            )
-        } else if(!this.state.check){
+        if(!this.state.check){
             return (
                 <Redirect to="/authenticate"/>
             )
