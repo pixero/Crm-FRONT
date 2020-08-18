@@ -20,7 +20,7 @@ export default class Form extends React.Component {
             ref: '',
             refName: '',
             response:'',
-            message:'',
+            message:''
         }
     }
 
@@ -40,6 +40,7 @@ export default class Form extends React.Component {
                 .then(response => {
                     if(response.data.token != null){
                         localStorage.setItem('token',response.data.token)
+                        localStorage.setItem('isAuth',true)
                         window.location.reload()
                     }else{
                         // add message in form
@@ -92,19 +93,19 @@ export default class Form extends React.Component {
 
     render() {
 
-        let ifAuth = localStorage.getItem('isAuth')
+        let isAuth = localStorage.getItem('isAuth')
         if(this.state.response) {
             return (
                 <Redirect to='/authenticate'/>
             )
         }
         else if(this.state.response===false){
-
-            this.state.message = "Пользователь с таким именем уже существует";
+            this.setState({message:"Пользователь с таким именем уже существует"})
+            // this.state.message = "Пользователь с таким именем уже существует";
 
         }
 
-        if(ifAuth ){
+        if( isAuth ){
             return(
             <Redirect to="/" />
             )
