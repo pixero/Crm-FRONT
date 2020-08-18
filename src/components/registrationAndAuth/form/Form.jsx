@@ -2,7 +2,8 @@ import React from "react";
 import FormStyle from './FormStyle.module.sass';
 import {NavLink, Redirect} from "react-router-dom";
 import Axios from "axios";
-import Alert from "react-bootstrap/Alert";
+
+
 
 export default class Form extends React.Component {
 
@@ -19,7 +20,7 @@ export default class Form extends React.Component {
             ref: '',
             refName: '',
             response:'',
-            message:'Пользователь с таким именем существует'
+            message:'',
         }
     }
 
@@ -41,8 +42,8 @@ export default class Form extends React.Component {
                         localStorage.setItem('token',response.data.token)
                         window.location.reload()
                     }else{
-                        console.log(response.data.token)
                         // add message in form
+                        this.setState({message:'Неверный логин или пароль'})
                     }
                 })
                 .catch(error => {
@@ -90,13 +91,17 @@ export default class Form extends React.Component {
     }
 
     render() {
+
         let ifAuth = localStorage.getItem('isAuth')
-        if(this.state.response){
+        if(this.state.response) {
             return (
                 <Redirect to='/authenticate'/>
             )
-        }else if(this.state.response===false){
-         
+        }
+        else if(this.state.response===false){
+
+            this.state.message = "Пользователь с таким именем уже существует";
+
         }
 
         if(ifAuth ){
@@ -124,8 +129,9 @@ export default class Form extends React.Component {
                     <NavLink to={this.state.ref}>
                         {this.state.refName}
                     </NavLink>
-                    <br></br>
-                    <button className="btn btn-primary" onClick={() => this.send()}>{this.state.buttonName}</button>
+                    <hr/>
+                    <p>{this.state.message}</p>
+                    <button className="btn btn-primary" onClick={() => this.send()}> {this.state.buttonName} </button>
                 </div>
             </div>
         )
