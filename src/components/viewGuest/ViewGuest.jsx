@@ -47,7 +47,7 @@ export default class ViewGuest  extends React.Component {
 
         return (
             <div className={ViewGuestStyle.viewGuest}>
-                <Table striped bordered hover size="sm"  variant="dark">
+                <Table striped bordered hover size="sm"  variant="light">
                     <thead>
                     <tr>
                         <th>№</th>
@@ -62,7 +62,7 @@ export default class ViewGuest  extends React.Component {
                         <th>Дата выезда</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody >
                     {arrayNew}
                     </tbody>
                 </Table>

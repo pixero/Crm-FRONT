@@ -100,8 +100,8 @@ export default class Form extends React.Component {
             )
         }
         else if(this.state.response===false){
-            this.setState({message:"Пользователь с таким именем уже существует"})
-            // this.state.message = "Пользователь с таким именем уже существует";
+
+            this.state.message = "Пользователь с таким именем уже существует";
 
         }
 

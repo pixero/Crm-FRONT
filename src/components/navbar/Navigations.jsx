@@ -21,7 +21,11 @@ export default class Navigations extends React.Component {
 
         return (
             <Navbar bg="orange" variant="dark"  fixed="top" className={NavbarStyle.navigation}>
-                <Navbar.Brand href="/"> </Navbar.Brand>
+                <Navbar.Brand  className={NavbarStyle.logoNavContent}>
+                    <NavLink to="/">
+                    <img src="logo.png" alt=""  className={NavbarStyle.imgLogo} />
+                    </NavLink>
+                </Navbar.Brand>
                 <Nav className="mr-auto">
                     <div className="btn-group" role="group" aria-label="Basic example">
                         <NavLink exact to="/" type="button" className="btn btn-outline-light">Главная</NavLink>
