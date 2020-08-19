@@ -33,10 +33,6 @@ export default class GetRequest extends React.Component {
                 <Redirect to="/authenticate"/>
             )
         }
-        return (
-            <div>
-
-            </div>
-        );
+        return null;
     }
 }

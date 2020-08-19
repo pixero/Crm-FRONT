@@ -29,7 +29,7 @@ export default class Navigations extends React.Component {
                 <Nav className="mr-auto">
                     <div className="btn-group" role="group" aria-label="Basic example">
                         <NavLink exact to="/" type="button" className="btn btn-outline-light">Главная</NavLink>
-                        <NavLink to="/guest" type="button" className="btn btn-outline-light"   >Просмотр гостей</NavLink>
+                        <NavLink to="/guest" type="button" className="btn btn-outline-light" >  Просмотр гостей</NavLink>
                         <NavLink to="/newGuest" type="button" className="btn btn-outline-light">Добавить гостя</NavLink>
                         <NavLink to="/profile" type="button" className="btn btn-outline-light">Профиль</NavLink>
                     </div>

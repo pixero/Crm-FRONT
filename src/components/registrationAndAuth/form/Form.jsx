@@ -4,7 +4,6 @@ import {NavLink, Redirect} from "react-router-dom";
 import Axios from "axios";
 
 
-
 export default class Form extends React.Component {
 
 
@@ -19,8 +18,8 @@ export default class Form extends React.Component {
             buttonName: '',
             ref: '',
             refName: '',
-            response:'',
-            message:''
+            response: '',
+            message: ''
         }
     }
 
@@ -38,13 +37,13 @@ export default class Form extends React.Component {
                 }
             )
                 .then(response => {
-                    if(response.data.token != null){
-                        localStorage.setItem('token',response.data.token)
-                        localStorage.setItem('isAuth',true)
+                    if (response.data.token != null) {
+                        localStorage.setItem('token', response.data.token)
+                        localStorage.setItem('isAuth', true)
                         window.location.reload()
-                    }else{
+                    } else {
                         // add message in form
-                        this.setState({message:'Неверный логин или пароль'})
+                        this.setState({message: 'Неверный логин или пароль'})
                     }
                 })
                 .catch(error => {
@@ -64,7 +63,7 @@ export default class Form extends React.Component {
                 }
             )
                 .then(response => {
-                    this.setState({response:response.data.response})
+                    this.setState({response: response.data.response})
                 })
                 .catch(error => {
                     console.error(error)
@@ -94,20 +93,17 @@ export default class Form extends React.Component {
     render() {
 
         let isAuth = localStorage.getItem('isAuth')
-        if(this.state.response) {
+        if (this.state.response) {
             return (
                 <Redirect to='/authenticate'/>
             )
-        }
-        else if(this.state.response===false){
-
+        } else if (this.state.response === false) {
             this.state.message = "Пользователь с таким именем уже существует";
-
         }
 
-        if( isAuth ){
-            return(
-            <Redirect to="/" />
+        if (isAuth) {
+            return (
+                <Redirect to="/"/>
             )
         }
 
