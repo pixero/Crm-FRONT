@@ -33,8 +33,9 @@ export default class Form extends React.Component {
             )
                 .then(response => {
                     if (response.data.token != null) {
-                        localStorage.setItem('token', response.data.token)
-                        localStorage.setItem('isAuth', true)
+                        localStorage.setItem('token', response.data.token);
+                        localStorage.setItem('isAuth', true);
+                        localStorage.setItem('role',response.data.roles)
                         window.location.reload()
                     } else {
                         //  message in form

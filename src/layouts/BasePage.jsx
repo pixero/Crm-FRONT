@@ -10,6 +10,19 @@ import AdminPanel from "../components/adminPage/AdminPanel";
 
 export default class BasePage extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state={
+            adminPanel:[],
+            isAdmin:false
+        }
+    }
+    componentDidMount() {
+        if(  /ADMIN/.test(localStorage.getItem('role'))  ){
+            this.setState({adminPanel: <Route path="/admin" component={AdminPanel}/> })
+        }
+    }
+
 
     render() {
 
@@ -20,7 +33,7 @@ export default class BasePage extends React.Component {
                 </div>
                 <div className={BasePageStyle.content}>
                     <Route path="/guest" render={()=> <ViewGuest />}/>
-                    <Route path="/admin" render={()=> <AdminPanel/>}/>
+                    {this.state.adminPanel}
                 </div>
 
             </div>
