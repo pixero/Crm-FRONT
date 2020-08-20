@@ -12,7 +12,7 @@ function App() {
                 <Route  path="/" component={GetRequest} />
                 <Route  path="/" component={BasePage}/>
                 <Route  path="/authenticate" component={Form} />
-                <Route  path="/registration" component={Form} />
+                {/*<Route  path="/registration" component={Form} />*/}
         </div>
     );
 }
