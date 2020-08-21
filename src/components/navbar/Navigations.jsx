@@ -8,13 +8,6 @@ import NavbarStyle from './Navigations.module.sass';
 
 export default class Navigations extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            adminNav:'',
-            isAdmin:false
-        }
-    }
 
     logout(){
         localStorage.removeItem('token');
@@ -22,14 +15,9 @@ export default class Navigations extends React.Component {
         localStorage.removeItem('role');
         window.location.reload();
     }
-    componentDidMount() {
-        if(    /ADMIN/.test(localStorage.getItem('role')) ){
-            this.setState({adminNav:<NavLink exact to="/admin" type="button" className="btn btn-outline-light">Админ панель</NavLink>})
-        }
-    }
 
     render() {
-        if(window.location.pathname === '/authenticate'){
+        if(window.location.pathname === '/authenticate' || /admin/.test(window.location.pathname)){
             return null;
         }
 
@@ -44,9 +32,7 @@ export default class Navigations extends React.Component {
                     <div className="btn-group" role="group" aria-label="Basic example">
                         <NavLink exact to="/" type="button" className="btn btn-outline-light">Главная</NavLink>
                         <NavLink to="/guest" type="button" className="btn btn-outline-light" >  Просмотр гостей</NavLink>
-                        <NavLink to="/newGuest" type="button" className="btn btn-outline-light">Добавить гостя</NavLink>
                         <NavLink to="/profile" type="button" className="btn btn-outline-light">Профиль</NavLink>
-                        {this.state.adminNav}
                     </div>
                 </Nav>
                 <Form inline>
