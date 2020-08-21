@@ -2,7 +2,8 @@ import React from "react";
 import AdminContentStyle from './AdminContent.module.sass';
 import Axios from "axios";
 import Table from "react-bootstrap/Table";
-import {Redirect} from "react-router-dom";
+import {NavLink, Redirect} from "react-router-dom";
+import UserInfo from "../userInfo/UserInfo";
 
 export default class AdminContent extends React.Component{
 
@@ -12,7 +13,8 @@ export default class AdminContent extends React.Component{
             inputName : '',
             inputPassword : '',
             userArray:[],
-            redirect:''
+            redirect:'',
+            userInfo:''
         };
         this.inputPassword = React.createRef();
         this.inputName = React.createRef();
@@ -23,19 +25,18 @@ export default class AdminContent extends React.Component{
                 'Authorization': 'Bearer ' + localStorage.getItem('token')
             }
         }).then(response => {
-            this.getUserList()
         })
     }
-    editUser(props){
-        Axios.get(window.location.pathname +'/profile/'+ props,{ headers: {
+    editUser(){
+        Axios.get(window.location.pathname ,{ headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + localStorage.getItem('token')
             }}).then(response =>{
-                console.log(response.data)
+                this.setState({userInfo:<UserInfo props={response.data} />})
         })
     }
     getUserList(){
-
+        
         Axios.get(window.location.pathname, {
             headers: {
                 'Content-Type': 'application/json',
@@ -56,11 +57,13 @@ export default class AdminContent extends React.Component{
                                 </button>
                             </td>
                             <td className={AdminContentStyle.delete}>
+                                <NavLink to={window.location.pathname + '/profile/' + el.id}  >
                                 <button className="btn btn-primary adminButton"
-                                        onClick={()=>{this.editUser(el.id)}}
+                                        onClick={()=>{this.editUser()}}
                                 >
                                     Редактировать
                                 </button>
+                                </NavLink>
                             </td>
                         </tr>
                     ))
@@ -74,7 +77,7 @@ export default class AdminContent extends React.Component{
     }
     componentDidMount() {
         if (/admin/.test(window.location.pathname)) {
-         this.getUserList()
+         this.getUserList();
         }
     }
     send() {
@@ -137,6 +140,9 @@ export default class AdminContent extends React.Component{
                             {this.state.userArray}
                             </tbody>
                         </Table>
+                    </div>
+                    <div className={AdminContentStyle.infoUser}>
+                        {this.state.userInfo}
                     </div>
                 </div>
             )

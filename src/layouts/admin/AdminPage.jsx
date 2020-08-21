@@ -17,6 +17,7 @@ export default class AdminPage extends React.Component {
                 </div>
                 <div className={AdminPageStyle.content}>
                         <AdminContent/>
+
                 </div>
 
             </div>
