@@ -36,7 +36,7 @@ export default class AdminContent extends React.Component{
         })
     }
     getUserList(){
-        
+
         Axios.get(window.location.pathname, {
             headers: {
                 'Content-Type': 'application/json',
