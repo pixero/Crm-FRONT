@@ -4,6 +4,8 @@ import Nav from "react-bootstrap/Nav";
 import Form from "react-bootstrap/Form";
 import {NavLink} from "react-router-dom";
 import NavbarStyle from './Navigations.module.sass';
+import Image from "react-bootstrap/Image";
+import Col from "react-bootstrap/Col";
 
 
 export default class Navigations extends React.Component {
@@ -12,7 +14,9 @@ export default class Navigations extends React.Component {
     logout(){
         localStorage.removeItem('token');
         localStorage.removeItem('isAuth');
-        localStorage.removeItem('role');
+        localStorage.removeItem('picture');
+        localStorage.removeItem('username');
+        localStorage.removeItem('id');
         window.location.reload();
     }
 
@@ -36,8 +40,12 @@ export default class Navigations extends React.Component {
                     </div>
                 </Nav>
                 <Form inline>
+                    <Image src={"/userImg/"+ localStorage.getItem('picture')} className={NavbarStyle.imgProfile}  roundedCircle />
                     <button type="button" className="btn btn-primary" onClick={() => this.logout() }>Выйти из системы</button>
                 </Form>
+                {/*<Col xs={6} md={4}>*/}
+                {/*    <Image src={"/userImg/"+ localStorage.getItem('picture')} roundedCircle className={NavbarStyle.imgProfile}  />*/}
+                {/*</Col>*/}
             </Navbar>
         )
     }

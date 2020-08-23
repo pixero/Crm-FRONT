@@ -15,7 +15,7 @@ export default class Form extends React.Component {
 
         this.state = {
             password:'',
-            name:''
+            name:'',
         }
     }
 
@@ -35,6 +35,9 @@ export default class Form extends React.Component {
                     if (response.data.token != null) {
                         localStorage.setItem('token', response.data.token);
                         localStorage.setItem('isAuth', true);
+                        localStorage.setItem('id', response.data.id);
+                        localStorage.setItem('username', response.data.username);
+                        localStorage.setItem('picture', response.data.picture);
                         window.location.reload()
                     } else {
                         //  message in form

@@ -6,7 +6,8 @@ export default class userInfo extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            selectedFile: null
+            selectedFile: null,
+            img:''
         }
 
     }
@@ -25,19 +26,14 @@ export default class userInfo extends React.Component{
         Axios.post('/uploadFile', data,{headers:{
                 'Authorization': 'Bearer ' + localStorage.getItem('token')
             }}).then(response =>{
+                localStorage.setItem( 'picture',response.data.fileName)
         })
     }
-    // getImg = () =>{
-    //     Axios.get('/return',{headers:{
-    //             'Authorization': 'Bearer ' + localStorage.getItem('token')
-    //         }}).then(response =>{
-    //             console.log(response.data)
-    //     })
-    // }
 
     render() {
         return(
             <div>
+                {this.state.img}
                 <h3> Имя: {this.props.props.username}</h3>
                 <h3> Пароль: {this.props.props.password}</h3>
                 <h3> Дата регистрации: {this.props.props.registrationDate }</h3>
