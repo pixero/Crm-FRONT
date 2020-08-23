@@ -5,7 +5,6 @@ import Form from "react-bootstrap/Form";
 import {NavLink} from "react-router-dom";
 import NavbarStyle from './Navigations.module.sass';
 import Image from "react-bootstrap/Image";
-import Col from "react-bootstrap/Col";
 
 
 export default class Navigations extends React.Component {
