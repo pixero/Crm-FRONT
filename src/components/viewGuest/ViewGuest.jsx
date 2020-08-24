@@ -8,7 +8,7 @@ export function getGuestList() {
     Axios.get('/guest', {
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
         }
     }).then(response => {
 
@@ -27,10 +27,30 @@ export function getGuestList() {
                 <td>{el.dateOfDeparture}</td>
             </tr>
         ))
-        console.log(arrayNew)
         return arrayNew
 
     })
+        // .catch(error =>{
+        //     Axios.get('authenticate/updateTokens',{headers:{
+        //             'Content-Type': 'application/json',
+        //             'Authorization': 'Bearer '+localStorage.getItem('refreshToken')
+        //         }})
+        //         .then( response  =>{
+        //             localStorage.setItem('accessToken',response.data.access_token);
+        //             localStorage.setItem('refreshToken', response.data.refresh_token);
+        //
+        //
+        //             Axios.get('/guest', {
+        //                 headers: {
+        //                     'Content-Type': 'application/json',
+        //                     'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+        //                 }
+        //             }).then(response=>{
+        //                 console.clear()
+        //                 console.log(response)
+        //             })
+        //         })
+        // })
 }
 
 export default class ViewGuest  extends React.Component {
@@ -48,7 +68,7 @@ export default class ViewGuest  extends React.Component {
         Axios.get('/guest', {
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + localStorage.getItem('token')
+                'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
             }
         }).then(response => {
             this.setState({guestList:response.data})

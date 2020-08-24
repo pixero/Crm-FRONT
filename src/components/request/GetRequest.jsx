@@ -1,8 +1,12 @@
 import React from "react";
 import Axios from "axios";
 import {Redirect} from "react-router-dom";
+import {
+   creatorRequestRefreshToken
+} from "../../redux/Action";
+import {connect} from "react-redux";
 
-export default class GetRequest extends React.Component {
+ export class GetRequest extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -11,11 +15,11 @@ export default class GetRequest extends React.Component {
     }
 
     componentDidMount() {
-        let token = localStorage.getItem('token')
-        Axios.get('/', {
+        
+        Axios.get('/checkAuth', {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + token
+                    'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
                 }
             }
         )
@@ -23,11 +27,12 @@ export default class GetRequest extends React.Component {
                 localStorage.setItem( 'isAuth',response.data.check)
             })
             .catch(error => {
-                console.error(error)
+                this.props.creatorRequestRefreshToken();
             })
     }
 
     render() {
+
         if(!this.state.check){
             return (
                 <Redirect to="/authenticate"/>
@@ -36,3 +41,13 @@ export default class GetRequest extends React.Component {
         return null;
     }
 }
+
+const mapToProps = state=>{
+    return state.auth
+}
+
+const authDispatch = {
+    creatorRequestRefreshToken
+}
+
+export default connect (mapToProps, authDispatch) (GetRequest)

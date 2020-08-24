@@ -5,17 +5,14 @@ import Form from "react-bootstrap/Form";
 import {NavLink} from "react-router-dom";
 import NavbarStyle from './Navigations.module.sass';
 import Image from "react-bootstrap/Image";
+import {getGuestList} from "../viewGuest/ViewGuest";
 
 
 export default class Navigations extends React.Component {
 
 
     logout(){
-        localStorage.removeItem('token');
-        localStorage.removeItem('isAuth');
-        localStorage.removeItem('picture');
-        localStorage.removeItem('username');
-        localStorage.removeItem('id');
+       localStorage.clear();
         window.location.reload();
     }
 
@@ -34,7 +31,7 @@ export default class Navigations extends React.Component {
                 <Nav className="mr-auto">
                     <div className="btn-group" role="group" aria-label="Basic example">
                         <NavLink exact to="/" type="button" className="btn btn-outline-light">Главная</NavLink>
-                        <NavLink to="/guest" type="button" className="btn btn-outline-light" >  Просмотр гостей</NavLink>
+                        <NavLink to="/guest" type="button" className="btn btn-outline-light" onClick={() => getGuestList()}>  Просмотр гостей</NavLink>
                         <NavLink to="/profile" type="button" className="btn btn-outline-light">Профиль</NavLink>
                     </div>
                 </Nav>

@@ -1,4 +1,4 @@
-import {AUTH_POST_REQUEST, UPDATE_MESSAGE, UPDATE_NAME_USER, UPDATE_PASSWORD_USER} from "./Types";
+import {AUTH_POST_REQUEST, REQUST_REFRESH_TOKEN, UPDATE_MESSAGE, UPDATE_NAME_USER, UPDATE_PASSWORD_USER} from "./Types";
 
 export function creatorUpdatePasswordUser(password){
     return{
@@ -24,5 +24,11 @@ export function creatorUpdateMessageText(text){
 export function creatorAuthPostRequest(){
     return{
         type: AUTH_POST_REQUEST
+    }
+}
+
+export function creatorRequestRefreshToken(){
+    return{
+        type: REQUST_REFRESH_TOKEN
     }
 }
