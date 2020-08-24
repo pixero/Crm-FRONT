@@ -1,5 +1,12 @@
-import {AUTH_POST_REQUEST, REQUST_REFRESH_TOKEN, UPDATE_MESSAGE, UPDATE_NAME_USER, UPDATE_PASSWORD_USER} from "./Types";
 import Axios from "axios";
+
+export const AUTH_USER = "AUTHENTICATE_USER";
+export const UPDATE_PASSWORD_USER = "UPDATE-PASSWORD-USER";
+export const UPDATE_NAME_USER = "UPDATE-NAME-USER";
+export const UPDATE_MESSAGE = "UPDATE-MESSAGE";
+export const AUTH_POST_REQUEST = "AUTH-POST-REQUEST";
+export const REQUST_REFRESH_TOKEN = "REQUST_REFRESH-TOKEN";
+
 
 const initialState = {
     name: '',
@@ -7,7 +14,7 @@ const initialState = {
     messageWrong: ''
 }
 
-export const authReducer = (state = initialState, action) => {
+export const Authreducer = (state = initialState, action) => {
     switch (action.type) {
         case UPDATE_PASSWORD_USER:
             return {...state, password: action.password};

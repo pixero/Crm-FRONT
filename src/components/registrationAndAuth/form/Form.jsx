@@ -7,7 +7,7 @@ import {
     creatorUpdateMessageText,
     creatorUpdateNameUser,
     creatorUpdatePasswordUser
-} from "../../../redux/Action";
+} from "../../../redux/authorization/Action";
 
 
 class Form extends React.Component {

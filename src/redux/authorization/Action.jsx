@@ -1,4 +1,4 @@
-import {AUTH_POST_REQUEST, REQUST_REFRESH_TOKEN, UPDATE_MESSAGE, UPDATE_NAME_USER, UPDATE_PASSWORD_USER} from "./Types";
+import {AUTH_POST_REQUEST, REQUST_REFRESH_TOKEN, UPDATE_MESSAGE, UPDATE_NAME_USER, UPDATE_PASSWORD_USER} from "./Reducer";
 
 export function creatorUpdatePasswordUser(password){
     return{

@@ -3,7 +3,7 @@ import Axios from "axios";
 import {Redirect} from "react-router-dom";
 import {
    creatorRequestRefreshToken
-} from "../../redux/Action";
+} from "../../redux/authorization/Action";
 import {connect} from "react-redux";
 
  export class GetRequest extends React.Component {
@@ -15,7 +15,7 @@ import {connect} from "react-redux";
     }
 
     componentDidMount() {
-        
+
         Axios.get('/checkAuth', {
                 headers: {
                     'Content-Type': 'application/json',
