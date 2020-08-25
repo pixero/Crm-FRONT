@@ -39,9 +39,6 @@ export default class Navigations extends React.Component {
                     <Image src={"/userImg/"+ localStorage.getItem('picture')} className={NavbarStyle.imgProfile}  roundedCircle />
                     <button type="button" className="btn btn-primary" onClick={() => this.logout() }>Выйти из системы</button>
                 </Form>
-                {/*<Col xs={6} md={4}>*/}
-                {/*    <Image src={"/userImg/"+ localStorage.getItem('picture')} roundedCircle className={NavbarStyle.imgProfile}  />*/}
-                {/*</Col>*/}
             </Navbar>
         )
     }

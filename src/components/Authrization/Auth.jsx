@@ -1,16 +1,9 @@
 import React from "react";
 import FormStyle from './FormStyle.module.sass';
 import {Redirect} from "react-router-dom";
-import {connect} from "react-redux";
-import {
-    creatorAuthPostRequest,
-    creatorUpdateMessageText,
-    creatorUpdateNameUser,
-    creatorUpdatePasswordUser
-} from "../../../redux/authorization/Action";
 
 
-class Form extends React.Component {
+export default class Auth extends React.Component {
 
 
     constructor(props) {
@@ -21,9 +14,7 @@ class Form extends React.Component {
 
     render() {
 
-        let isAuth = localStorage.getItem('isAuth')
-
-        if (isAuth) {
+        if (localStorage.getItem('isAuth')) {
             return (
                 <Redirect to="/"/>
             )
@@ -38,34 +29,22 @@ class Form extends React.Component {
                         <input type="text" className="form-control" id="exampleInputEmail1"
                                aria-describedby="emailHelp"
                                value={this.props.name}
-                               onChange={ () => this.props.creatorUpdateNameUser(this.inputName.current.value)}
+                               onChange={ () => this.props.updateName(this.inputName.current.value)}
                                ref={this.inputName}/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="exampleInputPassword1">Пароль</label>
                         <input type="password" className="form-control" id="exampleInputPassword1"
                                value={this.props.password}
-                               onChange={ ()=> this.props.creatorUpdatePasswordUser(this.inputPassword.current.value)}
+                               onChange={ ()=> this.props.updatePassword(this.inputPassword.current.value)}
                                ref={this.inputPassword}/>
                     </div>
                     <hr/>
                     <p> {this.props.messageWrong} </p>
-                    <button className="btn btn-primary" onClick={() => this.props.creatorAuthPostRequest()}> Авторизироваться </button>
+                    <button className="btn btn-primary" onClick={() => this.props.authPostRequst()}> Авторизироваться </button>
                 </div>
             </div>
         )
     }
 }
 
-const mapToProps = state=>{
-    return state.auth
-}
-
-const authDispatch = {
-    creatorUpdatePasswordUser,
-    creatorUpdateNameUser,
-    creatorUpdateMessageText,
-    creatorAuthPostRequest
-}
-
-export default connect (mapToProps, authDispatch) (Form)

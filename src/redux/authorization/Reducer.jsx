@@ -65,7 +65,6 @@ export const Authreducer = (state = initialState, action) => {
                 })
                 .catch(error =>{
                     localStorage.clear();
-                    window.location.reload();
                 })
             return {...state};
         default:

@@ -14,7 +14,7 @@ import {connect} from "react-redux";
         }
     }
 
-    componentDidMount() {
+    componentDidUpdate() {
 
         Axios.get('/checkAuth', {
                 headers: {
@@ -42,12 +42,10 @@ import {connect} from "react-redux";
     }
 }
 
-const mapToProps = state=>{
-    return state.auth
-}
+
 
 const authDispatch = {
     creatorRequestRefreshToken
 }
 
-export default connect (mapToProps, authDispatch) (GetRequest)
+export default connect (null, authDispatch) (GetRequest)

@@ -3,8 +3,8 @@ import { Route} from "react-router-dom";
 import BasePage from "./layouts/users/BasePage";
 import './App.sass';
 import GetRequest from "./components/request/GetRequest";
-import Form from "./components/registrationAndAuth/form/Form";
 import AdminPage from "./layouts/admin/AdminPage";
+import AuthContainer from "./components/Authrization/AuthContainer";
 
 function App() {
 if(!/admin/.test(window.location.pathname)) {
@@ -12,7 +12,7 @@ if(!/admin/.test(window.location.pathname)) {
         <div className="App">
             <Route path="/" component={GetRequest}/>
             <Route path="/" component={BasePage}/>
-            <Route path="/authenticate" component={Form}/>
+            <Route path="/authenticate" component={AuthContainer}/>
         </div>
     );
 }
