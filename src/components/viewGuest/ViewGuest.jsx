@@ -2,34 +2,35 @@ import React from "react";
 import ViewGuestStyle from './ViewGuest.module.sass';
 import Table from "react-bootstrap/Table";
 import Axios from "axios";
+import {connect} from "react-redux";
 
 export function getGuestList() {
 
-    Axios.get('/guest', {
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
-        }
-    }).then(response => {
-
-        let arrayNew = response.data.map((el, key) => (
-
-            <tr key={key}>
-                <td>{key + 1}</td>
-                <td>{el.surname}</td>
-                <td>{el.name}</td>
-                <td>{el.patronymic}</td>
-                <td>{el.dateOfBirth}</td>
-                <td>{el.passportId}</td>
-                <td>{el.passportSeries}</td>
-                <td>{el.issued}</td>
-                <td>{el.arrivalDate}</td>
-                <td>{el.dateOfDeparture}</td>
-            </tr>
-        ))
-        return arrayNew
-
-    })
+    // Axios.get('/guest', {
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //         'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+    //     }
+    // }).then(response => {
+    //
+    //     let arrayNew = response.data.map((el, key) => (
+    //
+    //         <tr key={key}>
+    //             <td>{key + 1}</td>
+    //             <td>{el.surname}</td>
+    //             <td>{el.name}</td>
+    //             <td>{el.patronymic}</td>
+    //             <td>{el.dateOfBirth}</td>
+    //             <td>{el.passportId}</td>
+    //             <td>{el.passportSeries}</td>
+    //             <td>{el.issued}</td>
+    //             <td>{el.arrivalDate}</td>
+    //             <td>{el.dateOfDeparture}</td>
+    //         </tr>
+    //     ))
+    //     return arrayNew
+    //
+    // })
         // .catch(error =>{
         //     Axios.get('authenticate/updateTokens',{headers:{
         //             'Content-Type': 'application/json',
@@ -55,46 +56,46 @@ export function getGuestList() {
 
 export default class ViewGuest  extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            guestList:[]
-
-        }
-    }
-
-
-    componentDidMount() {
-        Axios.get('/guest', {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
-            }
-        }).then(response => {
-            this.setState({guestList:response.data})
-
-        })
-    }
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         guestList:[]
+    //
+    //     }
+    // }
+    //
+    //
+    // componentDidMount() {
+    //     Axios.get('/guest', {
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+    //         }
+    //     }).then(response => {
+    //         this.setState({guestList:response.data})
+    //
+    //     })
+    // }
 
 
 
     render() {
 
-        let arrayNew = this.state.guestList.map((el, key) => (
-
-            <tr key={key}>
-                <td>{key + 1}</td>
-                <td>{el.surname}</td>
-                <td>{el.name}</td>
-                <td>{el.patronymic}</td>
-                <td>{el.dateOfBirth}</td>
-                <td>{el.passportId}</td>
-                <td>{el.passportSeries}</td>
-                <td>{el.issued}</td>
-                <td>{el.arrivalDate}</td>
-                <td>{el.dateOfDeparture}</td>
-            </tr>
-        ))
+        // let arrayNew = this.state.guestList.map((el, key) => (
+        //
+        //     <tr key={key}>
+        //         <td>{key + 1}</td>
+        //         <td>{el.surname}</td>
+        //         <td>{el.name}</td>
+        //         <td>{el.patronymic}</td>
+        //         <td>{el.dateOfBirth}</td>
+        //         <td>{el.passportId}</td>
+        //         <td>{el.passportSeries}</td>
+        //         <td>{el.issued}</td>
+        //         <td>{el.arrivalDate}</td>
+        //         <td>{el.dateOfDeparture}</td>
+        //     </tr>
+        // ))
 
         return (
             <div className={ViewGuestStyle.viewGuest}>
@@ -114,7 +115,7 @@ export default class ViewGuest  extends React.Component {
                     </tr>
                     </thead>
                     <tbody >
-                     {arrayNew}
+                    {this.props.getGuest}
                     </tbody>
                 </Table>
             </div>

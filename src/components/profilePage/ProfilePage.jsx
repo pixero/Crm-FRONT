@@ -44,7 +44,7 @@ export default class ProfilePage extends React.Component {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-2">
+                    <div className="col-1">
                         <input type="file" onChange={this.onChangeHandler} name="myImage" accept="image/*"/>
                         <button type="button" className="btn btn-success btn-block" onClick={this.onClickHandler}>Upload
                         </button>
