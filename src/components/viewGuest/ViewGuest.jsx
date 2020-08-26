@@ -56,46 +56,16 @@ export function getGuestList() {
 
 export default class ViewGuest  extends React.Component {
 
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         guestList:[]
-    //
-    //     }
-    // }
-    //
-    //
-    // componentDidMount() {
-    //     Axios.get('/guest', {
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
-    //         }
-    //     }).then(response => {
-    //         this.setState({guestList:response.data})
-    //
-    //     })
-    // }
+    constructor(props) {
+        super(props);
+        this.state = {
+            guestList:[]
 
+        }
+    }
 
 
     render() {
-
-        // let arrayNew = this.state.guestList.map((el, key) => (
-        //
-        //     <tr key={key}>
-        //         <td>{key + 1}</td>
-        //         <td>{el.surname}</td>
-        //         <td>{el.name}</td>
-        //         <td>{el.patronymic}</td>
-        //         <td>{el.dateOfBirth}</td>
-        //         <td>{el.passportId}</td>
-        //         <td>{el.passportSeries}</td>
-        //         <td>{el.issued}</td>
-        //         <td>{el.arrivalDate}</td>
-        //         <td>{el.dateOfDeparture}</td>
-        //     </tr>
-        // ))
 
         return (
             <div className={ViewGuestStyle.viewGuest}>
@@ -115,8 +85,20 @@ export default class ViewGuest  extends React.Component {
                     </tr>
                     </thead>
                     <tbody >
-                    {this.props.getGuest}
+                    { this.props.guestList}
                     </tbody>
+                    <tfoot>
+                    <td> </td>
+                    <td><input type="text"/></td>
+                    <td><input type="text"/></td>
+                    <td><input type="text"/></td>
+                    <td><input type="text"/></td>
+                    <td><input type="text"/></td>
+                    <td><input type="text"/></td>
+                    <td><input type="text"/></td>
+                    <td><input type="text"/></td>
+                    <td><input type="text"/></td>
+                    </tfoot>
                 </Table>
             </div>
         )

@@ -6,9 +6,12 @@ import {NavLink} from "react-router-dom";
 import NavbarStyle from './Navigations.module.sass';
 import Image from "react-bootstrap/Image";
 import {getGuestList} from "../viewGuest/ViewGuest";
+import {connect} from "react-redux";
+import {ViewGuestContainer} from "../viewGuest/ViewGuestContainer";
+import {creatorGetGuestList} from "../../redux/guestPage/Action";
 
 
-export default class Navigations extends React.Component {
+export   class Navigations extends React.Component {
 
 
     logout(){
@@ -31,7 +34,7 @@ export default class Navigations extends React.Component {
                 <Nav className="mr-auto">
                     <div className="btn-group" role="group" aria-label="Basic example">
                         <NavLink exact to="/" type="button" className="btn btn-outline-light">Главная</NavLink>
-                        <NavLink to="/guest" type="button" className="btn btn-outline-light" onClick={() => getGuestList()}>  Просмотр гостей</NavLink>
+                        <NavLink to="/guest" type="button" className="btn btn-outline-light" onClick={ () =>this.props.creatorGetGuestList()} >  Просмотр гостей</NavLink>
                         <NavLink to="/profile" type="button" className="btn btn-outline-light">Профиль</NavLink>
                     </div>
                 </Nav>
@@ -43,3 +46,8 @@ export default class Navigations extends React.Component {
         )
     }
 }
+
+const mapDispatchToProps={
+    creatorGetGuestList
+}
+export default connect (null,mapDispatchToProps)(Navigations)

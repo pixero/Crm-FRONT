@@ -4,16 +4,14 @@ import React from "react";
 export const GET_GUEST_LIST = "GET-GUEST-LIST";
 
 const initialState = {
-    name: '',
-    photoProfile:'',
-    messageWrong: ''
+   guestList:''
 }
 
 export const guestReducer = (state = initialState, action) => {
     switch (action.type) {
 
         case GET_GUEST_LIST :
-            let arrayNew
+
             Axios.get('/guest', {
                 headers: {
                     'Content-Type': 'application/json',
@@ -21,7 +19,7 @@ export const guestReducer = (state = initialState, action) => {
                 }
             }).then(response => {
 
-                arrayNew = response.data.map((el, key) => (
+                state.guestList = response.data.map((el, key) => (
 
                     <tr key={key}>
                         <td>{key + 1}</td>
@@ -36,7 +34,7 @@ export const guestReducer = (state = initialState, action) => {
                         <td>{el.dateOfDeparture}</td>
                     </tr>
                 ))})
-                return arrayNew
+                return {...state}
         default:
             return state
     }

@@ -4,19 +4,18 @@ import {connect} from "react-redux";
 import {creatorGetGuestList} from "../../redux/guestPage/Action";
 
 
-export class ViewGuestContainer extends React.Component{
+class ViewGuestContainer extends React.Component{
 
     render() {
         return(
             <ViewGuest getGuest={this.props.creatorGetGuestList}
+                       guestList={this.props.guestList}
             />
         )
     }
 }
 const mapStateToProps= state =>{
-
     return state.guest
-
 }
 
 const mapDispatchToProps={
